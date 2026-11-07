@@ -306,7 +306,7 @@ td a {
 
 .acoes {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* era wrap */
   gap: 0.5rem;
   justify-content: flex-end;
 }
@@ -314,6 +314,7 @@ td a {
 .acoes .btn {
   font-size: 0.700rem;
   padding: 0.4rem 0.75rem;
+  white-space: nowrap;
 }
 
 th:last-child,
