@@ -1,0 +1,140 @@
+:root {
+  --casa: #f2c230;
+  --casa-escuro: #e3ad14;
+  --tinta: #1b2438;
+  --esmeralda:#059669;
+}
+
+/* Títulos: Archivo condensado, como um cartaz de festa */
+.display {
+  font-stretch: 68%;
+  font-weight: 800;
+}
+
+/* Foco visível em tudo */
+:focus-visible {
+  outline: 3px solid var(--tinta);
+  outline-offset: 2px;
+}
+
+/* Grelha de números ------------------------------------------------ */
+.num {
+  height: 3.25rem;
+  border: 1.5px solid var(--tinta);
+  border-radius: 4px;
+  font-stretch: 75%;
+  font-weight: 700;
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--tinta);
+  transition: background-color 0.12s;
+}
+
+/* Os três estados também diferem na textura, não só na cor */
+.is-free {
+  background: #fff;
+}
+
+.is-reserved {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--casa) 0 6px,
+    var(--casa-escuro) 6px 8px
+  );
+}
+
+.is-paid {
+  background: var(--esmeralda);
+  color: #fff;
+}
+
+.num.is-free:hover {
+  background: var(--casa);
+}
+
+.num.is-reserved,
+.num.is-paid {
+  cursor: default;
+}
+
+.swatch {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1.5px solid var(--tinta);
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* Formulário ------------------------------------------------------- */
+.field {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  background: #fff;
+  border: 1.5px solid var(--tinta);
+  border-radius: 4px;
+}
+
+.field::placeholder {
+  color: rgb(27 36 56 / 0.45);
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  padding: 0.7rem 0.8rem;
+  border: 1.5px solid rgb(27 36 56 / 0.35);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.choice:has(:checked) {
+  border-color: var(--tinta);
+  background: var(--casa);
+}
+
+.choice:has(:focus-visible) {
+  outline: 3px solid var(--tinta);
+  outline-offset: 2px;
+}
+
+.btn {
+  padding: 0.7rem 1rem;
+  border-radius: 4px;
+  font-weight: 700;
+  border: 1.5px solid var(--tinta);
+  transition: background-color 0.12s, color 0.12s;
+}
+
+.btn-primary {
+  background: var(--tinta);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--casa);
+  color: var(--tinta);
+}
+
+.btn-secondary:hover {
+  background: rgb(27 36 56 / 0.08);
+}
+
+/* Aviso ------------------------------------------------------------ */
+.toast-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 999px;
+  background: var(--casa);
+  flex-shrink: 0;
+}
+
+.toast-dot.is-ok {
+  background: #5ad08a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
