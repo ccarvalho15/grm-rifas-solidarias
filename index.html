@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifas Solidárias | Grupo Recreativo Mirandense</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        casa: '#F2C230',   // amarelo da Casa Amarela
+                        tinta: '#1B2438',  // azul-tinta de impressão
+                        papel: '#FAFAF7',
+                    },
+                    fontFamily: {
+                        sans: ['Archivo', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-papel text-tinta font-sans min-h-screen flex flex-col antialiased selection:bg-casa">
+
+    <!-- Header -->
+    <div class="bg-casa">
+        <header class="max-w-6xl mx-auto px-4 pt-2 flex items-center justify-between gap-4">
+            <p class="flex items-baseline gap-3">
+                <span class="display text-3xl leading-none">GRM</span>
+                <span class="text-sm font-medium">Rifas Solidárias</span>
+            </p>
+            <a href="https://ccarvalho15.github.io/rifa-solidaria/admin.html" target="_blank" rel="noopener noreferrer"
+                class="flex items-center">
+                <img src="logotipo.png" alt="Administração GRM"
+                    class="h-20 w-20 object-contain hover:opacity-85 transition">
+            </a>
+        </header>
+
+        <section
+            class="max-w-6xl mx-auto px-4 pt-10 pb-12 sm:pt-14 sm:pb-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
+
+            <div class="lg:col-span-7">
+                <h1 class="display text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[0.98] tracking-tight">
+                    Um cabaz para si, um saxofone barítono para nós!
+                </h1>
+
+                <div class="mt-6 space-y-3 text-lg leading-snug max-w-[34rem]">
+                    <p>A nossa missão continua e precisamos da vossa ajuda! Queremos juntar à nossa banda um instrumento
+                        essencial: o tão desejado saxofone barítono.</p>
+                    <p>Habilite-se a ganhar um fantástico cabaz cheio de surpresas e deixe-nos mais perto de realizar
+                        este sonho musical.</p>
+                    <p>Garanta já o seu número e participe!</p>
+                </div>
+
+                <dl class="mt-8 flex flex-wrap gap-x-12 gap-y-4 border-t-2 border-tinta pt-4">
+                    <div>
+                        <dt class="text-sm">Preço por rifa</dt>
+                        <dd class="text-xl font-bold">2,00 €</dd>
+                    </div>
+                    <div>
+                        <dt class="text-sm">Sorteio</dt>
+                        <dd class="text-xl font-bold">Após a venda de todas as rifas</dd>
+                    </div>
+                </dl>
+            </div>
+
+            <!-- Prémio -->
+            <aside class="lg:col-span-5 bg-white rounded-md px-6 py-6 sm:px-8 shadow-sm">
+                <h2 class="display text-4xl leading-none">Grande Cabaz Solidário</h2>
+                <p class="mt-2 pb-4 text-sm">Inclui:</p>
+                <ul class="divide-y divide-dotted divide-tinta/40 text-sm sm:text-base">
+                    <li class="py-2">Saca-rolhas a pilhas</li>
+                    <li class="py-2">Taça Pyrex</li>
+                    <li class="py-2">Caçoila de barro vermelho</li>
+                    <li class="py-2">Jeropiga dos Moinhos</li>
+                    <li class="py-2">Mel</li>
+                    <li class="py-2">CD/Livro “Encont®s”</li>
+                    <li class="py-2">Nozes</li>
+                </ul>
+
+                <!-- Rodapé de Agradecimento -->
+                <div class="pt-1 flex items-center justify-start gap-3 text-xs text-tinta/70">
+                    <span>Agradecimentos:</span>
+                    <img src="eletrocarla.png" alt="EletroCarla" class="h-10 w-20 object-contain">
+                    <img src="moinhos.png" alt="Moinhos" class="h-10 w-20 object-contain">
+                    <img src="logotipo.png" alt="GRM" class="h-10 w-20 object-contain">
+
+                </div>
+            </aside>
+        </section>
+    </div>
+
+    <!-- Escolha do número -->
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 py-12 sm:py-16">
+        <h2 class="display text-4xl sm:text-5xl leading-tight">Escolha o seu número</h2>
+        <p class="mt-4 text-base sm:text-lg leading-relaxed max-w-4xl">
+            Selecione um número livre para o reservar. O pagamento pode ser feito por MB WAY ou presencialmente.
+        </p>
+        <ul class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm" aria-label="Legenda">
+            <li class="flex items-center gap-2">
+                <span class="swatch is-free"></span>
+                Livres <strong id="statAvailable" class="tabular-nums"></strong>
+            </li>
+            <li class="flex items-center gap-2">
+                <span class="swatch is-reserved"></span>
+                Reservados, a aguardar pagamento <strong id="statReserved" class="tabular-nums"></strong>
+            </li>
+            <li class="flex items-center gap-2">
+                <span class="swatch is-paid"></span>
+                Pagos <strong id="statPaid" class="tabular-nums"></strong>
+            </li>
+        </ul>
+
+        <!-- Filtros da Grelha -->
+        <div class="flex items-center mt-3 gap-3 mb-4">
+            <button type="button" onclick="setFilter('all')" id="filterAllBtn"
+                class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-casa text-stone-950 transition">
+                Todos (250)
+            </button>
+            <button type="button" onclick="setFilter('available')" id="filterAvailableBtn"
+                class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-white border border-stone-300 text-stone-800 hover:bg-stone-100 transition">
+                Apenas Livres
+            </button>
+        </div>
+
+        <div id="numbersGrid" class="mt-5 grid grid-cols-5 sm:grid-cols-10 gap-1.5 sm:gap-2">
+            <p class="col-span-full text-sm">A carregar os números…</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-tinta text-white/75 text-sm">
+        <div class="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-12 gap-10">
+
+            <div class="md:col-span-4">
+                <p class="display text-3xl text-white leading-none">Grupo Recreativo Mirandense</p>
+                <p class="mt-3">Filarmónica Mirandense, Escola de Música, Banda da Escola de Música “Os Vicentes” e Coro
+                    do GRM.</p>
+                <p class="mt-1">Desde 27 de julho de 1931 a alegrar com música.</p>
+            </div>
+
+            <div class="md:col-span-4 space-y-2">
+                <h3 class="font-semibold text-white">Sede</h3>
+                <p> <i class="fa-solid fa-location-dot mr-2"></i>
+                    <a href="https://maps.app.goo.gl/tLMUU8tHqY7pzPP57" target="_blank" rel="noopener noreferrer"
+                        class="underline underline-offset-4 hover:text-casa">Casa Amarela, Escola de Talentos<br>Rua da
+                        Praça da Liberdade, 15, Miranda do Corvo</a>
+                </p>
+                <p> <i class="fa-solid fa-envelope mr-2"></i>
+                    <a href="mailto:grmirandense@gmail.com"
+                        class="underline underline-offset-4 hover:text-casa">grmirandense@gmail.com</a>
+                </p>
+            </div>
+
+            <div class="md:col-span-4 space-y-2">
+                <h3 class="font-semibold text-white">Escola de Música</h3>
+                <!-- Ficha de inscrição -->
+                <p> <i class="fa-solid fa-link mr-2"></i>
+                    <a href="https://forms.gle/uS5kFzmKKfBNLuhM6" target="_blank" rel="noopener noreferrer"
+                        class="underline underline-offset-4 hover:text-casa">Ficha de inscrição 2026/2027</a>
+                </p>
+                <!-- Email -->
+                <p> <i class="fa-solid fa-envelope mr-2"></i>
+                    <a href="mailto:escolademusicamirandense@gmail.com"
+                        class="underline underline-offset-4 hover:text-casa">
+                        escolademusicamirandense@gmail.com
+                    </a>
+                </p>
+                <!-- Telemóvel -->
+                <p><i class="fa-solid fa-phone mr-2"></i>
+                    <a href="tel:+351913617510" class="underline underline-offset-4 hover:text-casa">+351 913 617
+                        510</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="border-t border-white/15">
+            <div class="max-w-6xl mx-auto px-4 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <p>© Grupo Recreativo Mirandense</p>
+                <ul class="flex flex-wrap gap-x-5 gap-y-1">
+                    <!-- Facebook -->
+                    <li><a href="https://www.facebook.com/grmirandense" target="_blank" rel="noopener noreferrer"
+                            class="underline underline-offset-4 hover:text-casa">Facebook</a></li>
+                    <!-- Instagram -->
+                    <li><a href="https://www.instagram.com/grmirandense" target="_blank" rel="noopener noreferrer"
+                            class="underline underline-offset-4 hover:text-casa">Instagram</a></li>
+                    <!-- YouTube -->
+                    <li><a href="https://www.youtube.com/@recreativomirandense8050" target="_blank"
+                            rel="noopener noreferrer" class="underline underline-offset-4 hover:text-casa">YouTube</a>
+                    </li>
+                    <!-- Spotify -->
+                    <li><a href="https://open.spotify.com/artist/0jkfv7Z8JB2oEFDkUWKuzM?si=rBHCRiY4QkSf5UMeH2EgYw"
+                            target="_blank" rel="noopener noreferrer"
+                            class="underline underline-offset-4 hover:text-casa">Spotify</a></li>
+                    <!-- Linktree -->
+                    <li><a href="https://linktr.ee/grmirandense" target="_blank" rel="noopener noreferrer"
+                            class="underline underline-offset-4 hover:text-casa">Linktree</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de reserva -->
+    <div id="reserveModal" role="dialog" aria-modal="true" aria-labelledby="reserveTitle"
+        class="fixed inset-0 bg-tinta/70 z-50 hidden flex items-end sm:items-center justify-center sm:p-4">
+        <div class="bg-white w-full max-w-md rounded-t-lg sm:rounded-md overflow-y-auto max-h-full">
+
+            <div class="bg-casa px-6 pt-5 pb-3 flex justify-between items-start gap-4">
+                <div>
+                    <p class="text-sm">Reserva da Rifa</p>
+                    <h3 id="reserveTitle" class="display text-5xl leading-none">
+                        Número <span id="modalNumberBadge">--</span>
+                    </h3>
+                </div>
+            </div>
+
+            <form id="reserveForm" onsubmit="submitReservation(event)" class="px-6 pt-3 pb-6 space-y-5">
+                <input type="hidden" id="modalNumberInput">
+
+                <div>
+                    <label for="buyerName" class="block text-sm font-semibold mb-1">Nome Completo</label>
+                    <input type="text" id="buyerName" required autocomplete="name" placeholder="Ex: João Monteiro"
+                        class="field">
+                </div>
+
+                <div>
+                    <label for="buyerPhone" class="block text-sm font-semibold mb-1">Contacto Telefónico</label>
+                    <input type="tel" id="buyerPhone" required autocomplete="tel" placeholder="Ex: 912 345 678"
+                        class="field">
+                </div>
+
+                <div>
+                    <label for="metodo" class="block text-sm font-semibold mb-1">Método de Pagamento</label>
+                    <select id="metodo" name="paymentMethod" onchange="togglePaymentInstructions(this.value)"
+                        class="field w-full">
+                        <option value="" disabled selected>Selecione um método de pagamento...</option>
+                        <option value="mbway">MB WAY (Por telemóvel)</option>
+                        <option value="presencial">Presencial (Sábados de manhã)</option>
+                    </select>
+                </div>
+
+                <div id="mbwayInstructions" class="border border-tinta/30 rounded p-4 text-sm space-y-2">
+                    <p class="font-semibold">Pagar por MB WAY</p>
+                    <ol class="list-decimal pl-5 space-y-1.5">
+                        <li>Envie <strong>2,00 €</strong> para o número <strong>+351 913 617 510</strong>.</li>
+                        <li>Na descrição escreva:
+                            <strong class="mt-1 font-mono">Rifa <span id="mbwayNumText">NºX</span> - [Nome]</strong>
+                        </li>
+                    </ol>
+                    <p class="text-tinta/70">O número fica "PAGO" após confirmação da transferência.</p>
+                </div>
+
+                <div id="presencialInstructions" class="hidden border border-tinta/30 rounded p-4 text-sm space-y-2">
+                    <p class="font-semibold">Pagar presencialmente</p>
+                    <p><strong>Quando:</strong> aos sábados de manhã, entre as 09h30 e as 12h30.</p>
+                    <p><strong>Onde:</strong> Casa Amarela - Escola de Talentos.</p>
+                    <p class="text-tinta/70">Reservamos a rifa durante xxx dias.</p>
+                </div>
+
+                <div class="flex gap-3 pt-1">
+                    <button type="button" onclick="closeReserveModal()" class="btn btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn btn-primary flex-1">Reservar número</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Aviso -->
+    <div id="toast" role="status" aria-live="polite"
+        class="fixed bottom-5 left-4 right-4 sm:left-auto sm:right-5 sm:max-w-sm bg-tinta text-white px-4 py-3 rounded z-50 transform translate-y-20 opacity-0 transition duration-300 flex items-center gap-3">
+        <span id="toastIcon" class="toast-dot"></span>
+        <span id="toastMessage" class="text-sm">Operação realizada com sucesso.</span>
+    </div>
+
+    <script src="rifa.js"></script>
+
+</body>
+
+</html>
